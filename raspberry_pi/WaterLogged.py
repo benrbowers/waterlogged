@@ -7,19 +7,34 @@ IR_PIN = 18
 # Pin Setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_PIN, GPIO.OUT)
-GPIO.setup(IR_PIN, GPIO.IN)
+GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Initial State for LED:
 GPIO.output(LED_PIN, GPIO.LOW)
+currentTime = 0.0
+startTime = 0.0
+elapsedTime = 0.0
 
+waterOn = False
 
 while True:
-    if GPIO.output(IR_PIN):
+    
+    if(currentTime >= 60)
+        http(elapsedTime)
+        elapsedTime = 0.0
+
+    if not GPIO.input(IR_PIN):
         GPIO.output(LED_PIN, GPIO.HIGH)
-        startTime = time.time()
+        if not waterOn:
+            startTime = time.time()
+        waterOn = True
+        currentTime = time.time()
     else:
         GPIO.output(LED_PIN, GPIO.LOW)
         currentTime = time.time()
+        if waterOn:
+            elapsedTime += currentTime - startTime
 
+        waterOn = False
 
-elapsedTime = currentTime - startTime
+    print elapsedTime
