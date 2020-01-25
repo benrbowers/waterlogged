@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 
 import '../styles/Login.css'
-import Logo from '../img/logo.jpeg'
+import Logo from '../img/logo.png'
 import { auth, googleProvider } from '../firebase'
 import { setToken } from '../redux/actions'
 //import url from '../server.js'
@@ -18,19 +18,6 @@ export class Login extends Component {
       error: '',
     }
   }
-
-  handleSubmit = (ev) => {
-    ev.preventDefault()
-
-   /* auth.logInWithEmailAndPassword(email, password)
-      .catch(error => {
-        this.setState({ error })
-      })*/
-  }
-
- /* logInWithFacebook = () => {
-
-  }*/
 
   logInWithGoogle = () => {
     auth.signInWithGoogle(googleProvider)

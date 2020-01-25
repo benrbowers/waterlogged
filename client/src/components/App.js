@@ -7,6 +7,7 @@ import { firebase } from '../firebase'
 import '../styles/App.css';
 
 import Login from './Login'
+import Main from './Main'
 
 class App extends Component {
 
@@ -42,7 +43,22 @@ class App extends Component {
   render = () => {
     return (
       <div className="App">
-        <Login />
+        <Switch>
+          <Route path="/login" render={(navProps) => 
+            !this.loggedIn() || this.state.isLoading
+            ? <Login {...navProps} />
+            : <Redirect to="/data"/>
+          }/>
+          <Route path="/" render={(navProps) =>
+            this.loggedIn() || this.state.isLoading
+            ? <Main 
+                {...this.props}
+                logOut={this.logOut}
+                uid={this.props.uid}
+              />
+            : <Redirect to="/login" />
+          }/>
+        </Switch>
       </div>
     );
   }
@@ -52,6 +68,7 @@ const mapStateToProps = (state) => {
   return {
     loggedIn: state.auth.loggedIn,
     account: state.auth.data ? state.auth.data : null,
+    uid: state.auth.data ? state.auth.data.uid : null,
   }
 }
 
