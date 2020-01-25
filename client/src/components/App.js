@@ -27,7 +27,7 @@ class App extends Component {
         authUser.getIdToken(true)
           .then((token) => {
             this.props.setToken(token)
-            //TODO: Get data; this.props.getProfile(`${url}/api/getProfile?username=${authUser.uid}&type=user`, { 'X-Authorization-Firebase': token})
+            //TODO: Get data; 
           })
       } else {
         this.props.logOut(authUser)

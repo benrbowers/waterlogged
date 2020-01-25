@@ -11,12 +11,14 @@ export default function genericDispatch(hasError, isLoading, success, method) {
                     return response
                 })
                 .then((response) => {
+                    console.log(response)
                     return response.json()
                 })
                 .then((data) => {
                     dispatch(success(data, extra))
                 })
                 .catch((error) => {
+                    console.log(error)
                     dispatch(hasError(true))
                 })
         }
