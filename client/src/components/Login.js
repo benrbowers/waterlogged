@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 
 import '../styles/Login.css'
-//import Logo from 
+import Logo from '../img/logo.jpeg'
 //import { auth, facebookProvider } from '../firebase'
 //import { registerUser } from '../redux/actions'
 //import url from '../server.js'
@@ -52,7 +52,7 @@ export class Login extends Component {
       <Container fluid>
         <Row>
           <Col className="logo" md={{ size: 4, offset:4}}>
-            <span>Waterlogged</span>{/*<img src={Logo} alt="" />*/}
+            <img src={Logo} alt="" />
           </Col>
         </Row>
 
@@ -61,7 +61,7 @@ export class Login extends Component {
                 <div className="fb-container">
                     <button type="button" className="btn btn-lg btn-block btn-social btn-facebook"
                     onClick={this.logInWithGoogle}>
-                    <i className="fab fa-facebook-f fa-fw"></i> Log in with Gogle
+                    <i className="fab fa-facebook-f fa-fw"></i> Log in with Google
                     </button>
                 </div>
 
