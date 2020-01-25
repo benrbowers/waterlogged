@@ -3,10 +3,12 @@ function auth(state = {}, action) {
         case 'LOG_IN': 
             return Object.assign({}, state, {
                 loggedIn: true,
+                data: action.user,
             })
         case 'LOG_OUT':
             return Object.assign({}, state, {
                 loggedIn: false,
+                data: false,
             })
         case 'SET_TOKEN':
             return Object.assign({}, state, {

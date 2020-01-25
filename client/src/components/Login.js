@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 
 import '../styles/Login.css'
 import Logo from '../img/logo.jpeg'
-//import { auth, facebookProvider } from '../firebase'
-//import { registerUser } from '../redux/actions'
+import { auth, googleProvider } from '../firebase'
+import { setToken } from '../redux/actions'
 //import url from '../server.js'
 
 export class Login extends Component {
@@ -29,21 +29,21 @@ export class Login extends Component {
   }
 
  /* logInWithFacebook = () => {
-    auth.signInWithFacebook(facebookProvider)
-      .then((response) => {
+
+  }*/
+
+  logInWithGoogle = () => {
+    auth.signInWithGoogle(googleProvider)
+      /*.then((response) => {
           const name = response.user.displayName.split(' ')
           response.user.getIdToken(true)
           .then((token) => {
             this.props.register(`${url}/register?first=${name[0]}&last=${name[1]}`, { 'X-Authorization-Firebase': token})
           })
-      })
+      })*/
       .catch(error => {
         this.setState({ error })
       })
-  }*/
-
-  logInWithGoogle = () => {
-
   }
 
 
@@ -56,7 +56,7 @@ export class Login extends Component {
           </Col>
         </Row>
 
-            <Button type="button" className="google-btn" color="primary" size="lg" block><span className="fa fa-google g-icon"></span>Log In With Google</Button>
+            <Button type="button" className="google-btn" color="primary" size="lg" block onClick={this.logInWithGoogle}><span className="fa fa-google g-icon"></span>Log In With Google</Button>
             { this.state.error && <p>{this.state.error.message}</p> }
       </Container>
     )
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-    //register: (url, headers) => dispatch(registerUser(url, headers)),
+    //setToken: (url, headers) => dispatch(registerUser(url, headers)),
 	}
 }
 
