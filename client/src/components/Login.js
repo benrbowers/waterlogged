@@ -49,25 +49,15 @@ export class Login extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container className="login-container" fluid>
         <Row>
-          <Col className="logo" md={{ size: 4, offset:4}}>
+          <Col className="logo" md={{ size: 4 }}>
             <img src={Logo} alt="" />
           </Col>
         </Row>
 
-        <div className="Login form-signin">
-            <form onSubmit={this.handleSubmit}>
-                <div className="fb-container">
-                    <button type="button" className="btn btn-lg btn-block btn-social btn-facebook"
-                    onClick={this.logInWithGoogle}>
-                    <i className="fab fa-facebook-f fa-fw"></i> Log in with Google
-                    </button>
-                </div>
-
-                { this.state.error && <p>{this.state.error.message}</p> }
-            </form>
-        </div>
+            <Button type="button" className="google-btn" color="primary" size="lg" block><span className="fa fa-google g-icon"></span>Log In With Google</Button>
+            { this.state.error && <p>{this.state.error.message}</p> }
       </Container>
     )
   }
