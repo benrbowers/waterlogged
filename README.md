@@ -1,4 +1,4 @@
-# waterlog
+# waterlogged
 # Features
 ## Arduino Layer
  1. LED (power light)
