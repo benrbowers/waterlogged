@@ -1,7 +1,7 @@
 import requests
 import uuid
 import time
-
+from getmac import get_mac_address
 
 def httpPOST(elapsedTime):
     f = open("userdata.txt", "r")
@@ -10,28 +10,30 @@ def httpPOST(elapsedTime):
     appliance = f.readline()
     f.close()
 
-    MAC = hex(uuid.getnode())
-    MAC = ':'.join(h[i:i+2] for i in range(2,14,2))
+    MAC = get_mac_address(interface = "eth0")
     
     timeStamp = time.time()
 
-    URL = "http://waterlogged.appspot.com"
+    URL = "https://waterlogged.appspot.com"
     URL += '/api/updateData/{}/{}/{}/{}'.format(uid, MAC, elapsedTime, timeStamp)
 
     headers = {
         'Authorization': token
     }
 
-    requests.post(url = URL, data = {}, headers = headers)
+    r = requests.post(url = URL, data = {}, headers = headers)
+    print(r.text)
     
 def httpGetToken():
-    MAC = hex(uuid.getnode())
-    MAC = ':'.join(h[i:i+2] for i in range(2,14,2))
+    MAC = get_mac_address(interface = "eth0")
 
-    r = requests.get(url = 'waterlogged.appspot.com/pub/token/{}'.format(MAC))
+    url = 'https://waterlogged.appspot.com/pub/token/{}'.format(MAC)
+    r = requests.get(url = 'https://waterlogged.appspot.com/pub/token/{}'.format(MAC))
 
     response = r.json()
-
+    print(url)
+    print(MAC)
+    print(response)
     token = response['token']
     uid = response['uid']
     appliance = response['appliance']
