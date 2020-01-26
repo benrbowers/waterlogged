@@ -12,6 +12,7 @@ var cors = require('cors')
 var app = express();
 
 app.use(cors({credentials: true, origin: true}))
+app.use(express.json()) 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,7 +54,7 @@ async function verifyToken(req, res, next) {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-
+    console.log(req.body)
     if(decodedToken) {
       req.body.uid = decodedToken.uid;
 
