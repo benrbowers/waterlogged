@@ -24,8 +24,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/', verifyToken);
+app.use('/pub', indexRouter);
+app.use('/api', verifyToken);
 app.use('/api', usersRouter);
 
 // catch 404 and forward to error handler
@@ -54,7 +54,6 @@ async function verifyToken(req, res, next) {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-    console.log(req.body)
     if(decodedToken) {
       req.body.uid = decodedToken.uid;
 

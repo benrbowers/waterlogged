@@ -13,13 +13,13 @@ export class PairTracker extends Component {
 
     let mac = ev.target.mac.value
     let appliance = ev.target.appliance.value
-    console.log(mac, appliance)
 
     this.props.addTracker(`${url}/api/tracker`, { 'Content-Type': 'application/json', 'Authorization': this.props.token }, JSON.stringify({
       tracker: {
         mac,
         appliance
-      }
+      },
+      token: this.props.token
     }))
   }
 
