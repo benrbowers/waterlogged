@@ -3,7 +3,7 @@ import time
 import board
 import digitalio
 
-from httpRequest import http
+from httpRequest import httpPOST, httpGetToken
 
 
 # LCD Setup
@@ -34,20 +34,27 @@ GPIO.output(LED_PIN, GPIO.LOW)
 
 
 # Initializing variables:
-minuteStart = time.time()
-minuteEnd = time.time()
-currentTime = 0.0
-startTime = 0.0
+minuteStart = time.time() #Keeps track of start of minute
+minuteEnd = time.time() #Time after start of minute
+currentTime = 0.0 #Current time
+startTime = 0.0 #Time water started running
 elapsedTime = 0.0
 waterOn = False
-url = "http://10.184.41.198/test.php"
+
+#Get token and other data:
+httpGetToken()
+f = open("userdata.txt")
+f.readline()
+f.readline()
+appliance = f.readline()
+f.close()
 
 lcd.message = "Water: Off"
 
 while True:
-    
-    if minuteEnd - minuteStart >= 600:
-        http(elapsedTime, url)
+
+    if minuteEnd - minuteStart >= 60:
+        httpPOST(elapsedTime)
         elapsedTime = 0.0
         minuteStart = time.time()
 
@@ -56,16 +63,16 @@ while True:
         if not waterOn:
             startTime = time.time()
             lcd.clear()
-            lcd.message = "Water: ON"
+            lcd.message = appliance + ": ON"
         waterOn = True
         currentTime = time.time()
+        elapsedTime += currentTime - startTime
     else:
         GPIO.output(LED_PIN, GPIO.HIGH)
         currentTime = time.time()
         if waterOn:
-            elapsedTime += currentTime - startTime
             lcd.clear()
-            lcd.message = "Water: OFF\nUsed for: " + str(int(currentTime - startTime)) + " sec"
+            lcd.message = appliance + ": OFF\nUsed for: " + str(int(currentTime - startTime)) + " sec"
 
         waterOn = False
 
