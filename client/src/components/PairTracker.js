@@ -32,7 +32,13 @@ export class PairTracker extends Component {
           MAC Address
           <input name="mac" type="text" />
           Appliance
-          <input name="appliance" type="text" />
+          <select name="appliance">
+            <option value="Kitchen Faucet">Kitchen Faucet</option>
+            <option value="Showerhead">Showerhead</option>
+            <option value="Dishwasher">Dishwasher</option>
+            <option value="Washing Machine">Washing Machine</option>
+            <option value="Bathtub Faucet">Bathtub Faucet</option>
+          </select> 
           <button type="submit" >Add</button>
         </form>
       </Container>
