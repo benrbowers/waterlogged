@@ -13,5 +13,5 @@ def http(elapsedTime, URL):
     'elapsedTime': elapsedTime
 }
     r = requests.post(url = URL, data = DATA)
-    print r.text
+    print (r.text)
  

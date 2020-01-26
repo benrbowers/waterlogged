@@ -42,26 +42,30 @@ elapsedTime = 0.0
 waterOn = False
 url = "http://10.184.41.198/test.php"
 
+lcd.message = "Faucet: Off"
+
 while True:
     
-    if minuteEnd - minuteStart >= 60:
+    if minuteEnd - minuteStart >= 600:
         http(elapsedTime, url)
         elapsedTime = 0.0
         minuteStart = time.time()
 
     if not GPIO.input(IR_PIN):
-        lcd.message = "Faucet: ON"
         GPIO.output(LED_PIN, GPIO.HIGH)
         if not waterOn:
             startTime = time.time()
+            lcd.clear()
+            lcd.message = "Faucet: ON"
         waterOn = True
         currentTime = time.time()
     else:
         GPIO.output(LED_PIN, GPIO.LOW)
-        lcd.message = "Faucet: OFF"
         currentTime = time.time()
         if waterOn:
             elapsedTime += currentTime - startTime
+            lcd.clear()
+            lcd.message = "Faucet: OFF T: " + str(currentTime - startTime)
 
         waterOn = False
 
