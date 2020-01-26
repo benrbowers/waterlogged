@@ -56,7 +56,7 @@ while True:
         if not waterOn:
             startTime = time.time()
             lcd.clear()
-            lcd.message = "Faucet: ON"
+            lcd.message = "Water: ON"
         waterOn = True
         currentTime = time.time()
     else:
@@ -65,7 +65,7 @@ while True:
         if waterOn:
             elapsedTime += currentTime - startTime
             lcd.clear()
-            lcd.message = "Faucet: OFF T: " + str(currentTime - startTime)
+            lcd.message = "Water: OFF\nLast water use duration: " + str(currentTime - startTime)
 
         waterOn = False
 
