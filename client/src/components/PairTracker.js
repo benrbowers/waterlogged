@@ -31,9 +31,21 @@ export class PairTracker extends Component {
         <form onSubmit={this.handleSubmit}>
           MAC Address:
           <input name="mac" type="text" />
+<<<<<<< HEAD
           Appliance:
           <input name="appliance" type="text" />
           <Button id="tracker-btn" type="submit" >Add</Button>
+=======
+          Appliance
+          <select name="appliance">
+            <option value="Kitchen Faucet">Kitchen Faucet</option>
+            <option value="Showerhead">Showerhead</option>
+            <option value="Dishwasher">Dishwasher</option>
+            <option value="Washing Machine">Washing Machine</option>
+            <option value="Bathtub Faucet">Bathtub Faucet</option>
+          </select> 
+          <button type="submit" >Add</button>
+>>>>>>> f846873d452d0c1bfb29f062584d08f78768e596
         </form>
       </Container>
     )
