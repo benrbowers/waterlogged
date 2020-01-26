@@ -1,0 +1,17 @@
+input {
+    margin: 20px;
+}
+
+.pair-tracker-container {
+    color: #4d5db7;
+}
+
+#header {
+    color: #4d5db7;
+    font-size: 2rem;
+}
+
+#tracker-btn {
+    color: #4d5db7;
+    background-color: #56cbf9;
+}

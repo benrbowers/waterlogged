@@ -1,7 +1,20 @@
 .navbar {
-    background-color: #43c19e;
+    background-color: white;
     padding-top: 0;
     padding-bottom: 0;
+    padding-left: 0;
+    border-style: inset;
+    border-color: #56cbf9;
+    border-width: 10px;
+}
+
+#navlink {
+    color: #4d5db7;
+}
+
+.logout-btn {
+    color: #4d5db7;
+    background-color: #56cbf9;
 }
 
 .small-logo {
@@ -12,4 +25,6 @@
 .waterlogged-brand { 
     padding-top: 0;
     padding-bottom: 0;
+    margin-left: 0;
+    padding-left: 0;
 }

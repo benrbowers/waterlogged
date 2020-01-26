@@ -37,6 +37,7 @@ export class Login extends Component {
   render() {
     return (
       <Container className="login-container" fluid>
+        <h1 id="slogan">Know where it goes.</h1>
         <Row>
           <Col className="logo" md={{ size: 4 }}>
             <img src={Logo} alt="" />

@@ -27,13 +27,13 @@ export class PairTracker extends Component {
     // TODO: Flesh out add form
     return (
       <Container className="pair-tracker-container" fluid>
-        Add a Tracker
+        <h1 id="header">Add a Tracker</h1>
         <form onSubmit={this.handleSubmit}>
-          MAC Address
+          MAC Address:
           <input name="mac" type="text" />
-          Appliance
+          Appliance:
           <input name="appliance" type="text" />
-          <button type="submit" >Add</button>
+          <Button id="tracker-btn" type="submit" >Add</Button>
         </form>
       </Container>
     )

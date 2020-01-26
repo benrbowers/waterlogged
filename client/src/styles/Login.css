@@ -1,3 +1,11 @@
+
+#slogan {
+    font-size: 4rem;
+    color: #4d5db7;
+    text-align: center;
+    margin-top: 40px;
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -10,7 +18,11 @@
 
 .logo img {
     width: 750px;
-    padding-top: 150px;
+    margin-top: 50px;
+    padding-top: 0px;
+    border-style: inset;
+    border-color: #56cbf9;
+    border-width: 10px;
 }
 
 .google-btn:hover {
