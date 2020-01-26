@@ -14,30 +14,72 @@ function set(url, data) {
     return db.ref(url).set(data)
 }
 
+function push(url, data) {
+    return db.ref(url).push(data)
+}
+
     
 function getUserTrackers(uid, callback) {
-    once(`/users/${uid}/trackers`, callback);
+    once(`/users/${uid}/trackers/`, callback);
+}
+
+function getTrackers(callback) {
+    once(`/trackers/`, callback);
+}
+
+function getToken(mac, callback, res) {
+    once(`/trackers`, (snapshot) => {
+        let trackers = snapshot.val()
+        if(trackers[mac]) {
+            callback(200, trackers[mac], res)
+        } else {
+            callback(404, { "data": "MAC address was not found" }, res)
+        }
+    });
+}
+
+function addTracker(uid, tracker, token) {
+    tracker.token = token
+    tracker.uid = uid
+    getTrackers((snapshot) => {
+        console.log('here2')
+        let trackers = snapshot.val()
+        console.log(trackers)
+        if(trackers) {
+            trackers[tracker.mac] = tracker
+        } else {
+            trackers = { [tracker.mac]: tracker}
+        }
+        set(`/trackers`, trackers)
+    });
 }
 
 function addTrackerToUser(uid, callback, tracker, res) {
     tracker.uid = uid
-    tracker.data = []
-    console.log(getUserTrackers)
     getUserTrackers(uid, (snapshot) => {
-        console.log('here2')
         let trackers = snapshot.val()
         if(trackers) {
             trackers[tracker.mac] = tracker
         } else {
             trackers = { [tracker.mac]: tracker}
         }
-
-        console.log('tracker')
         set(`/users/${uid}/trackers`, trackers)
         callback(res, 200)
     });
 } 
 
-exports.getUserTrackers = this.getUserTrackers;
-exports.addTrackerToUser = this.addTrackerToUser;
+function addDataPoint(uid, mac, elapsedTime, timestamp) {
+    console.log('here2')
+    push(`/users/${uid}/trackers/${mac}/data`, {
+        elapsedTime,
+        timestamp
+    })
+}
+
+exports.getUserTrackers = getUserTrackers;
+exports.addTrackerToUser = addTrackerToUser;
+exports.addTracker = addTracker;
+exports.getTrackers = getTrackers;
+exports.getToken = getToken;
+exports.addDataPoint = addDataPoint;
 

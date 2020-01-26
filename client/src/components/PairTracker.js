@@ -19,7 +19,8 @@ export class PairTracker extends Component {
       tracker: {
         mac,
         appliance
-      }
+      },
+      token: this.props.token
     }))
   }
 
