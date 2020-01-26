@@ -12,6 +12,18 @@ function data(state = {}, action) {
             return Object.assign({}, state, {
                 getData: action.data,
         })
+        case 'ADD_TRACKER_HAS_ERROR':
+            return Object.assign({}, state, {
+                addTrackerHasError: action.hasError,
+            })
+        case 'ADD_TRACKER_IS_LOADING':
+            return Object.assign({}, state, {
+                addTrackerIsLoading: action.isLoading,
+            })
+        case 'ADD_TRACKER_SUCCESS':
+            return Object.assign({}, state, {
+                addTracker: action.data,
+        })
         default:
             return state
     }
