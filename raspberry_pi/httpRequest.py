@@ -1,4 +1,6 @@
 import requests
+import uuid
+
 user = "Ben"
 appliance = "Shower"
 
@@ -10,7 +12,6 @@ def http(elapsedTime, URL):
     'appliance': appliance,
     'elapsedTime': elapsedTime
 }
-    requests.post(url = URL, data = DATA)
-
-
-
+    r = requests.post(url = URL, data = DATA)
+    print r.text
+ 
