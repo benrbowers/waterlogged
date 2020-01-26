@@ -14,3 +14,7 @@
 .totals {
     margin-top: 1rem;
 }
+
+.graphs canvas {
+ /*width: 700px !important;*/
+}
