@@ -11,7 +11,8 @@ input {
     font-size: 2rem;
 }
 
-#tracker-btn {
+.tracker-btn {
     color: #4d5db7;
     background-color: #56cbf9;
+    margin-left: 1rem;
 }
