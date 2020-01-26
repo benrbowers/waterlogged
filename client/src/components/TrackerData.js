@@ -78,8 +78,10 @@ class TrackerData extends Component {
                         <h3 className="h3-size">Water Usage (in minutes)</h3>
                         <Scatter
                             className="graph"
-                            width={230}
-                            height={125}
+                            options={{ 
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
                             data={this.formatData(tracker, 'Daily')}
                         />
                     </div>
@@ -87,16 +89,18 @@ class TrackerData extends Component {
                         <h3 className="h3-size">Cumulative Water Usage (in minutes)</h3>
                         <Scatter
                             className="graph"
-                            width={230}
-                            height={125}
+                            options={{ 
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
                             data={this.formatCumulativeData(tracker, 'Daily')}
                         />
                     </div>
                 </div>
                 <div className="totals">
                     <h3 className="h3-size">Daily Totals</h3>
-                    <span>Total Time: {tracker.totalData ? this.props.formatDuration(tracker.totalData.daily.elapsedTime) : '0 seconds' }</span>
-                    <span>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.daily.estGallons : 0} gallons</span>
+                    <div>Total Time: {tracker.totalData ? this.props.formatDuration(tracker.totalData.daily.elapsedTime) : '0 seconds' }</div>
+                    <div>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.daily.estGallons : 0} gallons</div>
                 </div>
             </div>
             <hr/>
@@ -107,8 +111,10 @@ class TrackerData extends Component {
                         <h3 className="h3-size">Water Usage (in minutes)</h3>
                         <Scatter
                             className="graph"
-                            width={230}
-                            height={125}
+                            options={{ 
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
                             data={this.formatData(tracker, 'Weekly')}
                         />
                     </div>
@@ -116,16 +122,18 @@ class TrackerData extends Component {
                         <h3 className="h3-size">Cumulative Water Usage (in minutes)</h3>
                         <Scatter
                             className="graph"
-                            width={230}
-                            height={125}
+                            options={{ 
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
                             data={this.formatCumulativeData(tracker, 'Weekly')}
                         />
                     </div>
                 </div>
                 <div className="totals">
                     <h3 className="h3-size">Weekly Totals</h3>
-                    <span>Total Time: {tracker.totalData ? this.props.formatDuration(tracker.totalData.weekly.elapsedTime) : '0 seconds' }</span>
-                    <span>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.weekly.estGallons : 0} gallons</span>
+                    <div>Total Time: {tracker.totalData ? this.props.formatDuration(tracker.totalData.weekly.elapsedTime) : '0 seconds' }</div>
+                    <div>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.weekly.estGallons : 0} gallons</div>
                 </div>
             </div>
             <hr/>
@@ -136,8 +144,10 @@ class TrackerData extends Component {
                         <h3 className="h3-size">Water Usage (in minutes)</h3>
                         <Scatter
                             className="graph"
-                            width={230}
-                            height={125}
+                            options={{ 
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
                             data={this.formatData(tracker, 'Monthly')}
                         />
                     </div>
@@ -145,16 +155,18 @@ class TrackerData extends Component {
                         <h3 className="h3-size">Cumulative Water Usage (in minutes)</h3>
                         <Scatter
                             className="graph"
-                            width={230}
-                            height={125}
+                            options={{ 
+                                responsive: true,
+                                maintainAspectRatio: true,
+                            }}
                             data={this.formatCumulativeData(tracker, 'Monthly')}
                         />
                     </div>
                 </div>
                 <div className="totals">
                     <h3 className="h3-size">Monthly Totals</h3>
-                    <span>Total Time: {tracker.totalData ? this.props.formatDuration(tracker.totalData.monthly.elapsedTime) : '0 seconds' }</span>
-                    <span>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.monthly.estGallons : 0} gallons</span>
+                    <div>Total Time: {tracker.totalData ? this.props.formatDuration(tracker.totalData.monthly.elapsedTime) : '0 seconds' }</div>
+                    <div>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.monthly.estGallons : 0} gallons</div>
                 </div>
             </div>
             <hr/>
