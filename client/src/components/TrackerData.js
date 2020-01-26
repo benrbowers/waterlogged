@@ -74,18 +74,22 @@ class TrackerData extends Component {
             <h2 className="h3-size">Daily Statistics</h2>
             <div className="data-section daily">
                 <div className="graphs">
-                    <div className="graph">
+                    <div className="graph-container">
                         <h3 className="h3-size">Water Usage (in minutes)</h3>
                         <Scatter
+                            className="graph"
+                            width={230}
+                            height={125}
                             data={this.formatData(tracker, 'Daily')}
-                            showLines={true}
                         />
                     </div>
-                    <div className="graph">
+                    <div className="graph-container">
                         <h3 className="h3-size">Cumulative Water Usage (in minutes)</h3>
                         <Scatter
+                            className="graph"
+                            width={230}
+                            height={125}
                             data={this.formatCumulativeData(tracker, 'Daily')}
-                            showLines={true}
                         />
                     </div>
                 </div>
@@ -95,19 +99,25 @@ class TrackerData extends Component {
                     <span>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.daily.estGallons : 0} gallons</span>
                 </div>
             </div>
+            <hr/>
             <h2 className="h3-size">Weekly Statistics</h2>
             <div className="data-section weekly">
                 <div className="graphs">
-                    <div className="graph">
+                    <div className="graph-container">
                         <h3 className="h3-size">Water Usage (in minutes)</h3>
                         <Scatter
+                            className="graph"
+                            width={230}
+                            height={125}
                             data={this.formatData(tracker, 'Weekly')}
-                            showLines={true}
                         />
                     </div>
-                    <div className="graph">
+                    <div className="graph-container">
                         <h3 className="h3-size">Cumulative Water Usage (in minutes)</h3>
                         <Scatter
+                            className="graph"
+                            width={230}
+                            height={125}
                             data={this.formatCumulativeData(tracker, 'Weekly')}
                         />
                     </div>
@@ -118,18 +128,25 @@ class TrackerData extends Component {
                     <span>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.weekly.estGallons : 0} gallons</span>
                 </div>
             </div>
+            <hr/>
             <h2 className="h3-size">Monthly Statistics</h2>
             <div className="data-section monthly">
                 <div className="graphs">
-                    <div className="graph">
+                    <div className="graph-container">
                         <h3 className="h3-size">Water Usage (in minutes)</h3>
                         <Scatter
+                            className="graph"
+                            width={230}
+                            height={125}
                             data={this.formatData(tracker, 'Monthly')}
                         />
                     </div>
-                    <div className="graph">
+                    <div className="graph-container">
                         <h3 className="h3-size">Cumulative Water Usage (in minutes)</h3>
                         <Scatter
+                            className="graph"
+                            width={230}
+                            height={125}
                             data={this.formatCumulativeData(tracker, 'Monthly')}
                         />
                     </div>
@@ -140,7 +157,7 @@ class TrackerData extends Component {
                     <span>Estimated Gallons Used: {tracker.totalData ? tracker.totalData.monthly.estGallons : 0} gallons</span>
                 </div>
             </div>
-
+            <hr/>
         </div>
     )
   }
