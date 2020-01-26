@@ -40,7 +40,7 @@ def httpGetToken():
 
     open("userdata.txt", "w").close()
     f = open("userdata.txt", "w")
-    f.write(token)
-    f.write(uid)
-    f.write(appliance)
+    f.write(token + "\n")
+    f.write(uid + "\n")
+    f.write(appliance + "\n")
     f.close()
