@@ -31,4 +31,12 @@ router.post('/updateData/:uid/:mac/:elapsedTime/:timestamp', function(req, res, 
   res.status(200).send(JSON.stringify({ data: 'success'}))
 });
 
+router.post('/updateToken', function(req, res, next) {
+  console.log(req.body)
+  let token = req.body.token
+  let uid = req.body.uid
+
+  db.updateToken(uid, token, sendStatus, res)
+})
+
 module.exports = router;

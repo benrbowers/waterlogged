@@ -14,6 +14,18 @@ function auth(state = {}, action) {
             return Object.assign({}, state, {
                 token: action.token,
             })
+        case 'UPDATE_TOKEN_HAS_ERROR':
+            return Object.assign({}, state, {
+                updateTokenHasError: action.hasError,
+            })
+        case 'UPDATE_TOKEN_IS_LOADING':
+            return Object.assign({}, state, {
+                updateTokenIsLoading: action.isLoading,
+            })
+        case 'UPDATE_TOKEN_SUCCESS':
+            return Object.assign({}, state, {
+                updateToken: action.data,
+        })
         default:
             return state
     }

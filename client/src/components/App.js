@@ -1,13 +1,15 @@
 import React, { Component }  from 'react';
 import { Route, Redirect, Switch } from 'react-router'
 import { connect } from 'react-redux'
-import { logIn, logOut, setToken } from '../redux/actions'
+import { logIn, logOut, setToken, updateToken } from '../redux/actions'
 
 import { firebase } from '../firebase'
 import '../styles/App.css';
 
 import Login from './Login'
 import Main from './Main'
+
+import url from '../server'
 
 class App extends Component {
 
@@ -27,7 +29,9 @@ class App extends Component {
         authUser.getIdToken(true)
           .then((token) => {
             this.props.setToken(token)
-            //TODO: Get data; 
+            this.props.updateToken(`${url}/api/updateToken`, { 'Content-Type': 'application/json', 'Authorization': token }, JSON.stringify({
+              token
+            }))
           })
       } else {
         this.props.logOut(authUser)
@@ -77,6 +81,7 @@ const mapDispatchToProps = (dispatch) => {
     logIn: (user) => dispatch(logIn(user)),
     logOut: () => dispatch(logOut()),
     setToken: (token) => dispatch(setToken(token)),
+    updateToken: (url, headers, body) => dispatch(updateToken(url, headers, body)),
 	}
 }
 

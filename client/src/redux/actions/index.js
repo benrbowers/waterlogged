@@ -1,3 +1,3 @@
-export { logIn, logOut, setToken } from './auth'
+export { logIn, logOut, setToken, updateToken } from './auth'
 
 export { getData, addTracker, computeData } from './data'

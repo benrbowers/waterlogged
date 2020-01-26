@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import '../styles/Data.css'
 import { getData, computeData } from '../redux/actions'
+import TrackerData from './TrackerData'
 import url from '../server'
 
 export class Data extends Component {
@@ -131,7 +132,12 @@ export class Data extends Component {
   render() {
     return (
       <Container className="data-container" fluid>
-        Test Data
+        {
+          this.state.data &&
+          Object.values(this.state.data.trackers).map((tracker) => 
+            <TrackerData tracker={tracker} {...this.props} />
+          )
+        }
       </Container>
     )
   }

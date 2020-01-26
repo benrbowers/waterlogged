@@ -83,6 +83,23 @@ function addDataPoint(uid, mac, elapsedTime, timestamp) {
     })
 }
 
+function updateToken(uid, token, callback, res) {
+    console.log(token)
+    getUserTrackers(uid, (snapshot) => {
+        let trackers = snapshot.val()
+        getTrackers((snapshotTrackers) => {
+            let allTrackers = snapshotTrackers.val()
+            Object.values(trackers).forEach((tracker) => {
+                allTrackers[tracker.mac].token = token
+            })
+
+            set(`/trackers`, allTrackers)
+            callback(res, 200, { "data": "success" })
+        })
+
+    })
+}
+
 exports.getUserTrackers = getUserTrackers;
 exports.addTrackerToUser = addTrackerToUser;
 exports.addTracker = addTracker;
@@ -90,3 +107,4 @@ exports.getTrackers = getTrackers;
 exports.getToken = getToken;
 exports.addDataPoint = addDataPoint;
 exports.getUserData = getUserData;
+exports.updateToken = updateToken
