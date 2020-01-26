@@ -3,14 +3,13 @@ let db = require('../firebase-admin/database')
 var router = express.Router();
 
 // TODO: Flesh out to handle errors
-function sendStatus(res, status) {
-  res.status(status).send(JSON.stringify({ data: 'success'}))
+function sendStatus(res, status, body) {
+  res.status(status).send(JSON.stringify(body))
 }
 
 /* Get User trackers */
 router.get('/data', function(req, res, next) {
-  let trackers = db.getUserTrackers(req.body.uid)
-  res.status(200).send(JSON.stringify(req.body.uid));
+  db.getUserData(req.body.uid, sendStatus, res)
 });
 
 router.post('/tracker', function(req, res, next) {
@@ -28,7 +27,6 @@ router.post('/updateData/:uid/:mac/:elapsedTime/:timestamp', function(req, res, 
   let elapsedTime = req.params.elapsedTime
   let timestamp = req.params.timestamp
   let mac = req.params.mac
-  console.log('here')
   db.addDataPoint(uid, mac, elapsedTime, timestamp)
   res.status(200).send(JSON.stringify({ data: 'success'}))
 });

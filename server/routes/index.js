@@ -3,7 +3,6 @@ let db = require('../firebase-admin/database')
 var router = express.Router();
 
 function sendStatus(status, body, res) {
-  console.log(body)
   res.status(status).send(JSON.stringify(body))
 }
 

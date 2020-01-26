@@ -1,6 +1,5 @@
 const admin = require('./admin');
 let db = admin.database();
-const test = 'l'
 
 function on(url, callback) {
 	return db.ref(url).on("value", callback, (error) => console.log(error));
@@ -19,6 +18,17 @@ function push(url, data) {
 }
 
     
+function getUserData(uid, callback, res) {
+    once(`/users/${uid}`, (snapshot) => {
+        let user = snapshot.val()
+        if(user) {
+            callback(res, 200, user)
+        } else {
+            callback(res, 404, { "data": "UID was not found" })
+        }
+    });
+}
+
 function getUserTrackers(uid, callback) {
     once(`/users/${uid}/trackers/`, callback);
 }
@@ -42,9 +52,7 @@ function addTracker(uid, tracker, token) {
     tracker.token = token
     tracker.uid = uid
     getTrackers((snapshot) => {
-        console.log('here2')
         let trackers = snapshot.val()
-        console.log(trackers)
         if(trackers) {
             trackers[tracker.mac] = tracker
         } else {
@@ -64,12 +72,11 @@ function addTrackerToUser(uid, callback, tracker, res) {
             trackers = { [tracker.mac]: tracker}
         }
         set(`/users/${uid}/trackers`, trackers)
-        callback(res, 200)
+        callback(res, 200, { "data": "success" })
     });
 } 
 
 function addDataPoint(uid, mac, elapsedTime, timestamp) {
-    console.log('here2')
     push(`/users/${uid}/trackers/${mac}/data`, {
         elapsedTime,
         timestamp
@@ -82,4 +89,4 @@ exports.addTracker = addTracker;
 exports.getTrackers = getTrackers;
 exports.getToken = getToken;
 exports.addDataPoint = addDataPoint;
-
+exports.getUserData = getUserData;
