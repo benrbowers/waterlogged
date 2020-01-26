@@ -8,6 +8,7 @@ function data(state = {}, action) {
             return Object.assign({}, state, {
                 getDataIsLoading: action.isLoading,
             })
+        case 'COMPUTE_DATA':
         case 'GET_DATA_SUCCESS':
             return Object.assign({}, state, {
                 getData: action.data,

@@ -1,5 +1,12 @@
 import genericDispatch from './fetch'
 
+export function computeData(data) {
+    return {
+        type: 'COMPUTE_DATA',
+        data
+    }
+}
+
 export function getDataHasError(hasError) {
     return {
         type: 'GET_DATA_HAS_ERROR',
